@@ -87,7 +87,9 @@ if st.button('Make Prediction'):
     input_worktype = encoder_work.transform(np.expand_dims(input_worktype, -1))
     inputs = np.array([[input_gender[0], input_age, int(input_hypertension), int(input_heart_disease), int(input_married), input_worktype[0], input_residence[0], input_glucose, input_bmi, input_smoking[0]]])
     inputs = ct.transform(inputs)
+    print(inputs)
     prediction = best_xgboost_model.predict(inputs)
+    print(prediction)
     print("final pred", np.squeeze(prediction, -1))
     prediction_dict = {0: "Negative", 1: "Positive"}
     st.write(f"Your stroke prediction is: **{prediction_dict[int(np.squeeze(prediction, -1))]}!**")
